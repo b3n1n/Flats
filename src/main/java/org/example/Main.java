@@ -12,8 +12,7 @@ public class Main {
         try (Connection conn = ConnectionFactory.getConnection();
              Scanner sc = new Scanner(System.in))
         {
-            FlatDAO dao = new FlatDAOImpl(conn);
-            dao.createTable();
+            FlatDAOImpl dao = new FlatDAOImpl(conn, "flats");
 
             while (true) {
                 System.out.println("1: view flats");

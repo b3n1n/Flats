@@ -1,24 +1,18 @@
 package org.example;
 
-import org.example.Flat;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlatDAOImpl implements FlatDAO {
+public class FlatDAOImpl extends AbstractDAO<Flat> {
 
     private final Connection conn;
 
-    public FlatDAOImpl(Connection conn) {
+    public FlatDAOImpl(Connection conn, String tableName) {
+        super(conn, tableName);
         this.conn = conn;
     }
-    @Override
-    public void createTable() {
 
-    }
-
-    @Override
     public void addFlat(String district, String address, int area, int rooms, float price){
         try {
             try (PreparedStatement st = conn.prepareStatement("INSERT INTO flat (district,address,area,rooms,price) VALUES(?, ?, ?, ?, ?)")) {
@@ -34,7 +28,6 @@ public class FlatDAOImpl implements FlatDAO {
         }
     }
 
-    @Override
     public List<org.example.Flat> sortByPrice(int from, int to) {
         List<Flat> res = new ArrayList<>();
 
@@ -62,7 +55,6 @@ public class FlatDAOImpl implements FlatDAO {
         }
     }
 
-    @Override
     public List<org.example.Flat> areaFrom(int from){
         List<Flat> res = new ArrayList<>();
 
@@ -91,7 +83,6 @@ public class FlatDAOImpl implements FlatDAO {
 
     }
 
-    @Override
     public List<org.example.Flat> getAll() {
         List<Flat> res = new ArrayList<>();
 

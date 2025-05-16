@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.Id;
-
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
